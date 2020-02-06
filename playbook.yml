@@ -1,0 +1,11 @@
+---
+- hosts: vm
+  become: yes
+  roles:
+       - basic
+       - kvm
+       - gns3
+       - reboot
+
+  vars_files:
+    - nas.yml

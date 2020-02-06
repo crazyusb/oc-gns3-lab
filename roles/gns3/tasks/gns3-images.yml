@@ -1,0 +1,10 @@
+---
+ - name: Create config directory
+   file:
+    path: /home/gns3/GNS3/images/QEMU
+    state: directory
+    mode: '0755'
+
+ - name: Copy archive from samba_share.
+    command: smbclient //hostname/samba_share/ {{ smb_password }} -U {{ smb_username }} -W "WORKGROUP" -c "recurse;lcd /local/path;get archive.zip"
+    creates: /local/path/archive.zip

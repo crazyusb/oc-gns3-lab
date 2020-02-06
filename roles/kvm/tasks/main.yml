@@ -1,0 +1,7 @@
+---
+ - name: Install Qemu/KVM
+   apt:
+    pkg:
+    - qemu-kvm 
+    - qemu
+    - libvirt-daemon

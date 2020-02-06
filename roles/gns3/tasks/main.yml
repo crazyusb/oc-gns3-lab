@@ -1,0 +1,48 @@
+---
+ - name: Add ppa
+   apt_repository:
+      repo: ppa:gns3/ppa
+
+ - name: Install gns3 packages
+   apt:
+    update_cache: yes
+    pkg:
+    - gns3-gui
+    - gns3-server
+
+ - name: Add i386 support
+   command: dpkg --add-architecture i386
+
+ - name: Install gns3-iou support
+   apt:
+    name:  gns3-iou
+    update_cache: yes
+
+ - name: GNS3FY lib
+   pip:
+    name: gns3fy 
+
+ - name: tabulate lib
+   pip:
+    name: tabulate
+
+ - name: Create GNS3 users
+   user:
+    name: gns3
+    groups: ubridge, libvirt, kvm
+    comment: gns3 user
+
+ - include: gns3-config.yml
+
+ - include: gns3-images.yml
+
+ - name: Systemd file
+   copy:
+      src: "{{ role_path }}/files/lib/systemd/system/gns3.service"
+      dest: /lib/systemd/system/gns3.service
+
+ - name: Enable gns3
+   systemd:
+    name: gns3
+    state: started
+    enabled: yes

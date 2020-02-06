@@ -1,0 +1,14 @@
+---
+ - name: Create config directory
+   file:
+    path: /home/gns3/.config/GNS3/2.2
+    state: directory
+    mode: '0755'
+ - name: Create Config file
+   assemble:
+    remote_src: no
+    src: "{{ role_path }}/templates/config.d"
+    dest: /home/gns3/.config/GNS3/2.2/gns3_controller.conf
+    owner: gns3
+    group: gns3
+    mode: '0644'
