@@ -1,11 +1,16 @@
 ---
 - hosts: vm
   become: yes
+  vars:
+    gns3_url: http://localhost
+    docker: "yes"
+    ubuntu: "no"
+    kali: "no"
+
   roles:
        - basic
        - kvm
        - gns3
        - reboot
+#       - lab
 
-  vars_files:
-    - nas.yml

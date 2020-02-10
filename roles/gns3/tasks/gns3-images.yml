@@ -3,8 +3,32 @@
    file:
     path: /home/gns3/GNS3/images/QEMU
     state: directory
-    mode: '0755'
+    mode: '0770'
 
- - name: Copy archive from samba_share.
-    command: smbclient //hostname/samba_share/ {{ smb_password }} -U {{ smb_username }} -W "WORKGROUP" -c "recurse;lcd /local/path;get archive.zip"
-    creates: /local/path/archive.zip
+ - name: Create sshfs directory
+   file:
+    path: /mnt/sshfs
+    state: directory
+    mode: '0770'
+
+ - name: Mount SSHFS
+   command: sshfs root@192.168.1.96:/sharedfolders/GNS3/images/QEMU /mnt/sshfs
+
+ - name: Rsync directory
+   command: rsync -Haurov /mnt/sshfs/ /home/gns3/GNS3/images/QEMU/ --progress
+
+ - name: Fix permision on directory and file
+   file:
+     path: /home/gns3/GNS3/images/QEMU/
+     owner: gns3
+     group: gns3
+
+ - name: Unmount a mounted volume
+   mount:
+     path: /mnt/sshfs
+     state: unmounted
+
+ - name: Create sshfs directory
+   file:
+    path: /mnt/sshfs
+    state: absent

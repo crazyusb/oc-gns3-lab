@@ -3,7 +3,8 @@
    file:
     path: /home/gns3/.config/GNS3/2.2
     state: directory
-    mode: '0755'
+    mode: '770'
+
  - name: Create Config file
    assemble:
     remote_src: no
@@ -11,4 +12,4 @@
     dest: /home/gns3/.config/GNS3/2.2/gns3_controller.conf
     owner: gns3
     group: gns3
-    mode: '0644'
+    mode: '664'

@@ -18,6 +18,9 @@
     name:  gns3-iou
     update_cache: yes
 
+ - include: gns3-docker.yml
+   when: docker == "yes"
+
  - name: GNS3FY lib
    pip:
     name: gns3fy 
@@ -32,9 +35,9 @@
     groups: ubridge, libvirt, kvm
     comment: gns3 user
 
- - include: gns3-config.yml
+# - include: gns3-config.yml
 
- - include: gns3-images.yml
+# - include: gns3-images.yml
 
  - name: Systemd file
    copy:

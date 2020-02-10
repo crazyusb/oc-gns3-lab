@@ -15,4 +15,5 @@
     - htop
     - tmux
     - zsh 
+    - sshfs
     state: latest
