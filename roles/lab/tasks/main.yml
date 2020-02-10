@@ -1,6 +1,6 @@
 --- 
  - name: Get the server facts
-   get_facts:
+   gns3_get_facts:
      url: "{{ gns3_url }}"
      port: 3080
      get_images: all
