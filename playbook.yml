@@ -3,9 +3,10 @@
   become: yes
   vars:
     gns3_url: http://localhost
-    docker: "yes"
-    ubuntu: "no"
-    kali: "no"
+    client: "false"
+    docker: "true"
+    ubuntu: "false"
+    kali: "false"
 
   roles:
        - basic
@@ -14,3 +15,5 @@
        - reboot
 #       - lab
 
+- import_playbook: client.yml
+  when: client == "true"

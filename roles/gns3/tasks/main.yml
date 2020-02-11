@@ -5,10 +5,8 @@
 
  - name: Install gns3 packages
    apt:
+    name:  gns3-server
     update_cache: yes
-    pkg:
-    - gns3-gui
-    - gns3-server
 
  - name: Add i386 support
    command: dpkg --add-architecture i386
@@ -19,7 +17,7 @@
     update_cache: yes
 
  - include: gns3-docker.yml
-   when: docker == "yes"
+   when: docker == "true"
 
  - name: GNS3FY lib
    pip:

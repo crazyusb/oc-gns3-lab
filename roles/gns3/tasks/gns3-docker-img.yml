@@ -3,10 +3,10 @@
    docker_image:
      name: gns3/kalilinux
      source: pull
-   when: kali == 'yes'
+   when: kali == 'true'
 
  - name: pull Ubuntu image
    docker_image:
      name: gns3/ubuntu
      source: pull
-   when: ubuntu == 'yes'
+   when: ubuntu == 'true'

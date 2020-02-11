@@ -13,7 +13,7 @@ But:
 2. Installation et configuration de la suite de virtualisation Libvirt, ainsi que QEMU/KVM
 3. Installation et configuration de GNS3
 4. Tester le fonctionnement de GNS3 à travers son API et récupérer la version ça version
-5. Si activé, installer la version de GNS3-Gui compatible avec le serveur sur notre machine client
+5. Si activé, installer la version de GNS3-Gui compatible avec le serveur sur notre machine client (Ubuntu 18.04/PopOS!)
 6. ~~Importation des Appliances~~ -- Not working with gns3api
 7. ~~Création d'une Infrastructure comprenant une Appliance "nat" reliée a un serveur CENTOS disposant de 2 cartes réseaux, et lui même relié à une machine client Fedora. -- Not working with gns3api since previous task can't~~
 
