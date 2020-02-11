@@ -12,8 +12,10 @@ But:
 1. Mise en place des paramètres de base en partant d'Ubuntu Server 18.04 LTS
 2. Installation et configuration de la suite de virtualisation Libvirt, ainsi que QEMU/KVM
 3. Installation et configuration de GNS3
-4. Importation des Appliances
-5. Création d'une Infrastructure comprenant une Appliance "nat" reliée a un serveur CENTOS disposant de 2 cartes réseaux, et lui même relié à une machine client Fedora.
+4. Tester le fonctionnement de GNS3 à travers son API et récupérer la version ça version
+5. Si activé, installer la version de GNS3-Gui compatible avec le serveur sur notre machine client
+6. ~~Importation des Appliances~~ -- Not working with gns3api
+7. ~~Création d'une Infrastructure comprenant une Appliance "nat" reliée a un serveur CENTOS disposant de 2 cartes réseaux, et lui même relié à une machine client Fedora. -- Not working with gns3api since previous task can't~~
 
 
 Fichier GNS3:
@@ -27,9 +29,11 @@ Nos appliances GNS3 (.gns3a) mise a jour son stockées sur notre gitlab : [[link
 TODO:
 ===
 
-- [ ] Rédaction playbook général
-- [ ] Rédaction Roles individuel
+- [x] Rédaction playbook général
+- [x] Rédaction Roles individuel
+- [ ] Debug docker support
 - [ ] Rédaction Modules Python/GNS3
+- [ ] Rédaction du playbook client
 
 
 
@@ -39,3 +43,8 @@ Technologie utilisé:
   - GNS3
   - [GNS3FY](https://github.com/dolew/gns3_py)
   - Ansible
+  - Python 3
+  - Ubuntu 18.04LTS Server
+  - Docker-ce
+
+  
