@@ -1,0 +1,8 @@
+---
+ - hosts: clients
+   become: yes
+   roles:
+     - gns3-gui
+
+# Maybe need pip for GNS3 client if no pkg available
+

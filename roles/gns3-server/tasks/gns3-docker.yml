@@ -25,6 +25,7 @@
  - name: Add GNS3 user to docker group
    user:
      name: gns3
+     group: gns3
      groups: ubridge, libvirt, kvm, docker
      append: yes
 

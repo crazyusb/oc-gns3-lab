@@ -1,2 +1,5 @@
-[vm]
+[server]
 gns3dev.local.lan ansible_host=192.168.122.246 ansible_port=22 ansible_user=devel
+
+[clients]
+workstation.local.lan ansible_host=192.168.122.181 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3

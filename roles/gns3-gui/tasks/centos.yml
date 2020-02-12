@@ -1,0 +1,11 @@
+---
+ - name: Setup EPEL repo
+   yum:
+           name: epel-release
+
+
+ - name: Install GNS3-Gui for Centos 7
+   yum:
+     name: gns3-gui
+   when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat") and
+        (ansible_distribution_major_version >= "7")

@@ -1,0 +1,10 @@
+---
+ - name: Add ppa
+   apt_repository:
+      repo: ppa:gns3/ppa
+      
+ - name: Install gns3 packages
+   apt:
+    update_cache: yes
+    pkg:
+    - gns3-gui

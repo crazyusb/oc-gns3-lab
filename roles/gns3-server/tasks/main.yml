@@ -16,6 +16,18 @@
     name:  gns3-iou
     update_cache: yes
 
+ - name: Create GNS3 group
+   group: 
+    name: gns3
+    state: present
+
+ - name: Create GNS3 users
+   user:
+    name: gns3
+    group: gns3
+    groups: ubridge, libvirt, kvm
+    comment: gns3 user
+
  - include: gns3-docker.yml
    when: docker == "true"
 
@@ -26,16 +38,6 @@
  - name: tabulate lib
    pip:
     name: tabulate
-
- - name: Create GNS3 users
-   user:
-    name: gns3
-    groups: ubridge, libvirt, kvm
-    comment: gns3 user
-
-# - include: gns3-config.yml
-
-# - include: gns3-images.yml
 
  - name: Systemd file
    copy:

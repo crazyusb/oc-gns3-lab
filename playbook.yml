@@ -1,9 +1,9 @@
 ---
-- hosts: vm
+- hosts: server
   become: yes
   vars:
     gns3_url: http://localhost
-    client: "false"
+    clients: "true"
     docker: "true"
     ubuntu: "false"
     kali: "false"
@@ -11,9 +11,9 @@
   roles:
        - basic
        - kvm
-       - gns3
+       - gns3-server
        - reboot
-#       - lab
 
-- import_playbook: client.yml
-  when: client == "true"
+- import_playbook: clients.yml
+  when: clients == "true"
+  
