@@ -3,3 +3,5 @@ gns3dev.local.lan ansible_host=192.168.122.246 ansible_port=22 ansible_user=deve
 
 [clients]
 workstation.local.lan ansible_host=192.168.122.181 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3
+centos7.local.lan ansible_host=192.168.122.217 ansible_port=22 ansible_user=utilisateur
+centos8.local.lan ansible_host=192.168.122.175 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3

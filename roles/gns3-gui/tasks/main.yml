@@ -3,7 +3,7 @@
    when: ansible_distribution == "Ubuntu"
 
  - include: centos.yml
-   when: ansible_distribution == "Centos"
+   when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
 
  - include: fedora.yml
    when: ansible_distribution == "Fedora"

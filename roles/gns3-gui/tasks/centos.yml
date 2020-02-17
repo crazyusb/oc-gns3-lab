@@ -1,11 +1,41 @@
 ---
  - name: Setup EPEL repo
    yum:
-           name: epel-release
+       name: epel-release
+   when: ansible_distribution_major_version >= "7"
 
-
- - name: Install GNS3-Gui for Centos 7
+ - name: Install tools and dep
    yum:
-     name: gns3-gui
-   when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat") and
-        (ansible_distribution_major_version >= "7")
+     name: "{{ packages }}"
+   vars:
+     packages:
+          - gcc
+          - python3-devel
+          - python3-pip
+          - python36-psutil
+          - python36-pyqt4-sip
+          - python36-pyqt5-sip
+          - python36-qt5
+          - python36-qt5-devel
+
+ - name: Setup EPEL repo
+   dnf:
+       name: epel-release
+   when: ansible_distribution_major_version >= "8"
+
+ - name: Install PyPiP
+   dnf:
+       name: python3-pip
+   when: ansible_distribution_major_version >= "8"
+
+ - name: GNS3-Gui
+   pip:
+    name: gns3-gui==2.2.5
+    executable: pip3
+
+
+# - name: Install GNS3-Gui for Centos 7
+#   yum:
+#     name: gns3-gui
+#   when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat") and
+#        (ansible_distribution_major_version >= "7")
