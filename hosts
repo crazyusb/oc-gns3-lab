@@ -1,8 +1,10 @@
 [server]
 gns3dev.local.lan ansible_host=192.168.122.246 ansible_port=22 ansible_user=devel
+#gns3centos7.local.lan ansible_host=192.168.122.21 ansible_port=22 ansible_user=root
+#gns3centos8.local.lan ansible_host=192.168.122.146 ansible_port=22 ansible_user=root
 
 [clients]
-#workstation.local.lan ansible_host=192.168.122.181 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3
+workstation.local.lan ansible_host=192.168.122.181 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3
 #centos7.local.lan ansible_host=192.168.122.217 ansible_port=22 ansible_user=utilisateur
 #centos8.local.lan ansible_host=192.168.122.175 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3
-fedora31.local.lan ansible_host=192.168.122.87 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3
+#fedora31.local.lan ansible_host=192.168.122.87 ansible_port=22 ansible_user=utilisateur ansible_python_interpreter=/usr/bin/python3

@@ -3,11 +3,12 @@
    apt_repository:
       repo: ppa:gns3/ppa
       
- - name: Install GNS3 gui
+ - name: Install GNS3 gui and wireshark
    apt:
     update_cache: yes
     pkg:
     - gns3-gui
+    - wireshark-gtk
 
  - name: Install gns3 server on client
    apt:

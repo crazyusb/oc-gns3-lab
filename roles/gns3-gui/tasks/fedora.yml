@@ -9,6 +9,7 @@
           - python3-psutil
           - python3-pyqt5-sip
           - python3-qt5
+          - wireshark-gnome
 
  - name: Install PyPiP
    dnf:

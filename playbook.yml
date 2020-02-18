@@ -3,7 +3,7 @@
   become: yes
   vars:
     gns3_url: http://localhost
-    clients: "true"
+    clients: "false"
     docker: "true"
 # Docker image
     ubuntu_img: "false"
@@ -19,4 +19,3 @@
 
 - import_playbook: clients.yml
   when: clients == "true"
-  

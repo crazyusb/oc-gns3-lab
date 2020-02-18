@@ -1,7 +1,10 @@
 #!/usr/bin/python
+
+# Import Lib
 from ansible.module_utils.basic import *
 import requests
 
+# Define Ansible module
 def main():
     module = AnsibleModule(
         argument_spec=dict(
@@ -14,6 +17,8 @@ def main():
         )
     )
     result = dict(changed=False)
+
+# Link Ansible variable to python
 
     server_url = module.params["url"]
     server_port = module.params["port"]
@@ -28,7 +33,6 @@ def main():
 
     except Exception as err:
         module.fail_json(msg=str(err), **result)
-
 
 
 if __name__ == '__main__':

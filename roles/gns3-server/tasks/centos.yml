@@ -1,9 +1,4 @@
 ---
- - name: Setup EPEL repo
-   yum:
-       name: epel-release
-   when: ansible_distribution_major_version == "7"
-
  - name: Install tools and dep
    yum:
      name: "{{ packages }}"
@@ -13,12 +8,13 @@
           - python3-devel
           - python3-pip
           - python36-psutil
-   when: ansible_distribution_major_version == "7"
+          - git
+          - cmake
+          - elfutils-libelf-devel
+          - libpcap-devel
+          - glibc-static
 
- - name: Setup EPEL repo
-   dnf:
-       name: epel-release
-   when: ansible_distribution_major_version == "8"
+   when: ansible_distribution_major_version == "7"
 
  - name: Install tools and dep
    dnf:
@@ -36,6 +32,41 @@
        name: python3-pip
    when: ansible_distribution_major_version == "8"
 
+ - name: Clone sources
+   git:
+    repo: https://github.com/GNS3/dynamips.git
+    dest: /root/dynamips
+
+ - name: Clone sources
+   git:
+    repo: https://github.com/GNS3/ubridge.git
+    dest: /root/ubridge
+
+# - name: Make directory
+
+ - name: Cmake dynamips
+   command: "mkdir -p /root/dynamips/build && cd root/dynamips/ &&  cmake ../ -DDYNAMIPS_CODE=stable"
+
+ - name: Make dynamips
+   make:
+     chdir: /root/dynampis
+
+ - name: Make install dynamips
+   make:
+     chdir: /root/dynamips
+     target: install
+   become: yes
+
+ - name: Make ubridge
+   make:
+     chdir: /root/ubridge
+
+ - name: Make install ubridge
+   make:
+     chdir: /root/ubridge
+     target: install
+   become: yes
+  
  - name: Create GNS3 group
    group: 
     name: gns3

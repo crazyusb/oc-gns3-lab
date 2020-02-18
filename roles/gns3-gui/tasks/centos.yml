@@ -17,6 +17,7 @@
           - python36-pyqt5-sip
           - python36-qt5
           - python36-qt5-devel
+          - wireshark-gnome
    when: ansible_distribution_major_version == "7"
 
  - name: Setup EPEL repo
@@ -35,6 +36,7 @@
           - python3-psutil
           - python3-pyqt5-sip
           - python3-qt5
+          - wireshark-gnome
    when: ansible_distribution_major_version == "8"
 
  - name: Install PyPiP
@@ -46,7 +48,6 @@
    pip:
     name: gns3-gui==2.2.5
     executable: pip3
-
 
  - name: GNS3-server
    pip:

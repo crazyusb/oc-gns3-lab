@@ -1,28 +1,40 @@
 ---
- - name: Upgrade all packages
-   dnf:
+ - name: Install epel-release
+   yum:
+     name: epel-release
+     state: latest
+   when: (ansible_distribution_major_version == "7")
+
+ - name: Upgrade all packages Centos 7
+   yum:
      name: "*"
      state: latest
    when: (ansible_distribution_major_version == "7")
 
- - name: Install basic tools
+ - name: Install basic tools Centos 7
    yum:
     pkg:
     - vim
     - htop
     - tmux
-    - zsh 
+    - zsh
     - sshfs
     state: latest
    when: (ansible_distribution_major_version == "7")
 
- - name: Upgrade all packages
+ - name: Install epel-release
+   dnf:
+     name: epel-release
+     state: latest
+   when: (ansible_distribution_major_version == "8")
+
+ - name: Upgrade all packages Centos 8
    dnf:
      name: "*"
      state: latest
    when: (ansible_distribution_major_version == "8")
 
- - name: Install basic tools
+ - name: Install basic tools Centos 8
    dnf:
     pkg:
     - vim
