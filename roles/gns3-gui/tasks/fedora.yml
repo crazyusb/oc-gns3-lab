@@ -1,0 +1,22 @@
+---
+ - name: Install tools and dep
+   dnf:
+     name: "{{ packages }}"
+   vars:
+     packages:
+             #          - gcc
+          - python3-devel
+          - python3-pip
+          - python3-psutil
+          - python3-pyqt5-sip
+          - python3-qt5
+
+ - name: Install PyPiP
+   dnf:
+       name: python3-pip
+
+ - name: GNS3-Gui
+   pip:
+    name: gns3-gui==2.2.5
+    executable: pip3
+
