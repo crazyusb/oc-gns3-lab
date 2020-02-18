@@ -4,7 +4,6 @@
      name: "{{ packages }}"
    vars:
      packages:
-             #          - gcc
           - python3-devel
           - python3-pip
           - python3-psutil
@@ -20,3 +19,8 @@
     name: gns3-gui==2.2.5
     executable: pip3
 
+ - name: GNS3-server
+   pip:
+    name: gns3-server==2.2.5
+    executable: pip3
+   when: srv_on_client == "true"

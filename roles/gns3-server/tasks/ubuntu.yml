@@ -1,0 +1,43 @@
+---
+ - name: Add ppa
+   apt_repository:
+      repo: ppa:gns3/ppa
+
+ - name: Install gns3 packages
+   apt:
+    name:  gns3-server
+    update_cache: yes
+
+ - name: Add i386 support
+   command: dpkg --add-architecture i386
+
+ - name: Install gns3-iou support
+   apt:
+    name:  gns3-iou
+    update_cache: yes
+
+ - name: Create GNS3 group
+   group: 
+    name: gns3
+    state: present
+
+ - name: Create GNS3 users
+   user:
+    name: gns3
+    group: gns3
+    groups: ubridge, libvirt, kvm
+    comment: gns3 user
+
+ - include: gns3-docker.yml
+   when: docker == "true"
+
+ - name: Systemd file
+   copy:
+      src: "{{ role_path }}/files/lib/systemd/system/gns3.service"
+      dest: /lib/systemd/system/gns3.service
+
+ - name: Enable gns3
+   systemd:
+    name: gns3
+    state: started
+    enabled: yes

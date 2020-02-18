@@ -3,8 +3,15 @@
    apt_repository:
       repo: ppa:gns3/ppa
       
- - name: Install gns3 packages
+ - name: Install GNS3 gui
    apt:
     update_cache: yes
     pkg:
     - gns3-gui
+
+ - name: Install gns3 server on client
+   apt:
+    update_cache: yes
+    pkg:
+    - gns3-server
+    when: srv_on_client == "true"
