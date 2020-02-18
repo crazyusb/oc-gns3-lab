@@ -2,18 +2,8 @@
  - name: Hostnamectl
    shell: hostnamectl set-hostname “{{ inventory_hostname|quote }}”
 
- - name: Update packages
-   apt:
-     name: "*"
-     state: latest
+ - include: ubuntu.yml
+   when: ansible_distribution == "Ubuntu"
 
- - name: Update packages
-   apt:
-    pkg:
-    - python3-pip
-    - vim
-    - htop
-    - tmux
-    - zsh 
-    - sshfs
-    state: latest
+ - include: centos.yml
+   when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")

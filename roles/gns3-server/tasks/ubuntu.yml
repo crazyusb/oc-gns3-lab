@@ -28,8 +28,8 @@
     groups: ubridge, libvirt, kvm
     comment: gns3 user
 
- - include: gns3-docker.yml
-   when: docker == "true"
+ - include: gns3-docker-ubuntu.yml
+   when: (docker == "true" ansible_distribution == "Ubuntu")
 
  - name: Systemd file
    copy:

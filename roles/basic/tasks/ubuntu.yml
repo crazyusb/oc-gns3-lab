@@ -1,0 +1,16 @@
+---
+ - name: Update packages
+   apt:
+     name: "*"
+     state: latest
+
+ - name: Update packages
+   apt:
+    pkg:
+    - python3-pip
+    - vim
+    - htop
+    - tmux
+    - zsh 
+    - sshfs
+    state: latest

@@ -48,6 +48,9 @@
     groups: ubridge, libvirt, kvm
     comment: gns3 user
 
+ - include: gns3-docker-centos.yml
+   when: (docker == "true" ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
+
  - name: GNS3-server
    pip:
     name: gns3-server==2.2.5

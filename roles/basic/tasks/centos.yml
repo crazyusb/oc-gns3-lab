@@ -1,0 +1,34 @@
+---
+ - name: Upgrade all packages
+   dnf:
+     name: "*"
+     state: latest
+   when: (ansible_distribution_major_version == "7")
+
+ - name: Install basic tools
+   yum:
+    pkg:
+    - vim
+    - htop
+    - tmux
+    - zsh 
+    - sshfs
+    state: latest
+   when: (ansible_distribution_major_version == "7")
+
+ - name: Upgrade all packages
+   dnf:
+     name: "*"
+     state: latest
+   when: (ansible_distribution_major_version == "8")
+
+ - name: Install basic tools
+   dnf:
+    pkg:
+    - vim
+    - htop
+    - tmux
+    - zsh 
+    - sshfs
+    state: latest
+   when: (ansible_distribution_major_version == "8")

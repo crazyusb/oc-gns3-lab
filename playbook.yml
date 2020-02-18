@@ -5,8 +5,10 @@
     gns3_url: http://localhost
     clients: "true"
     docker: "true"
-    ubuntu: "false"
-    kali: "false"
+# Docker image
+    ubuntu_img: "false"
+    kali_img: "false"
+# GNS3 Client    
     srv_on_client: "true"
 
   roles:

@@ -1,0 +1,30 @@
+---
+ - name: Docker repo
+   yum_repository:
+     name: docker-ce
+     description: Docker repo
+     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+ 
+ - name: Install docker-ce
+   yum:
+     name: docker-ce
+     state: latest
+
+ - name: Add GNS3 user to docker group
+   user:
+     name: gns3
+     group: gns3
+     groups: ubridge, libvirt, kvm, docker
+     append: yes
+
+ - name: Docker python SDK
+   pip:
+    name: docker 
+
+ - name: Enable docker daemon
+   systemd:
+     name: docker
+     state: started
+     enabled: yes
+
+ - include: gns3-docker-img.yml
