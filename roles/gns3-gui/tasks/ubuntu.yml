@@ -15,4 +15,4 @@
     update_cache: yes
     pkg:
     - gns3-server
-    when: srv_on_client == "true"
+   when: srv_on_client == "True"

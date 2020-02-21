@@ -1,72 +1,4 @@
 ---
- - name: Install tools and dep
-   yum:
-     name: "{{ packages }}"
-   vars:
-     packages:
-          - gcc
-          - python3-devel
-          - python3-pip
-          - python36-psutil
-          - git
-          - cmake
-          - elfutils-libelf-devel
-          - libpcap-devel
-          - glibc-static
-
-   when: ansible_distribution_major_version == "7"
-
- - name: Install tools and dep
-   dnf:
-     name: "{{ packages }}"
-   vars:
-     packages:
-          - gcc
-          - python3-devel
-          - python3-pip
-          - python3-psutil
-   when: ansible_distribution_major_version == "8"
-
- - name: Install PyPiP
-   dnf:
-       name: python3-pip
-   when: ansible_distribution_major_version == "8"
-
- - name: Clone sources
-   git:
-    repo: https://github.com/GNS3/dynamips.git
-    dest: /root/dynamips
-
- - name: Clone sources
-   git:
-    repo: https://github.com/GNS3/ubridge.git
-    dest: /root/ubridge
-
-# - name: Make directory
-
- - name: Cmake dynamips
-   command: "mkdir -p /root/dynamips/build && cd root/dynamips/ &&  cmake ../ -DDYNAMIPS_CODE=stable"
-
- - name: Make dynamips
-   make:
-     chdir: /root/dynampis
-
- - name: Make install dynamips
-   make:
-     chdir: /root/dynamips
-     target: install
-   become: yes
-
- - name: Make ubridge
-   make:
-     chdir: /root/ubridge
-
- - name: Make install ubridge
-   make:
-     chdir: /root/ubridge
-     target: install
-   become: yes
-  
  - name: Create GNS3 group
    group: 
     name: gns3
@@ -76,11 +8,11 @@
    user:
     name: gns3
     group: gns3
-    groups: ubridge, libvirt, kvm
+    groups:  libvirt, kvm
     comment: gns3 user
 
  - include: gns3-docker-centos.yml
-   when: (docker == "true" ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
+   when: docker == "True"  and (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
 
  - name: GNS3-server
    pip:
@@ -89,11 +21,17 @@
 
  - name: Systemd file
    copy:
-      src: "{{ role_path }}/files/lib/systemd/system/gns3.service"
+      src: "{{ role_path }}/files/lib/systemd/system/gns3_centos.service"
       dest: /lib/systemd/system/gns3.service
 
  - name: Enable gns3
    systemd:
     name: gns3
-    state: started
     enabled: yes
+
+ - name: Open Firewalld 3080 port for GNS3
+   firewalld:
+    port: 3080/tcp
+    permanent: yes
+    state: enabled
+    zone: public

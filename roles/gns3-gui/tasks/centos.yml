@@ -1,10 +1,12 @@
 ---
  - name: Setup EPEL repo
+   become: yes
    yum:
        name: epel-release
    when: ansible_distribution_major_version == "7"
 
  - name: Install tools and dep
+   become: yes
    yum:
      name: "{{ packages }}"
    vars:
@@ -21,11 +23,13 @@
    when: ansible_distribution_major_version == "7"
 
  - name: Setup EPEL repo
+   become: yes
    dnf:
        name: epel-release
    when: ansible_distribution_major_version == "8"
 
  - name: Install tools and dep
+   become: yes
    dnf:
      name: "{{ packages }}"
    vars:
@@ -36,10 +40,11 @@
           - python3-psutil
           - python3-pyqt5-sip
           - python3-qt5
-          - wireshark-gnome
+#          - wireshark-gnome
    when: ansible_distribution_major_version == "8"
 
  - name: Install PyPiP
+   become: yes
    dnf:
        name: python3-pip
    when: ansible_distribution_major_version == "8"
@@ -53,4 +58,3 @@
    pip:
     name: gns3-server==2.2.5
     executable: pip3
-   when: srv_on_client == "true"

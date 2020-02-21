@@ -1,0 +1,51 @@
+---
+ - name: Clone sources
+   git:
+    repo: https://github.com/GNS3/dynamips.git
+    dest: /root/dynamips
+
+ - name: Clone sources
+   git:
+    repo: https://github.com/GNS3/ubridge.git
+    dest: /root/ubridge
+
+ - name: Get VPCS sources
+   subversion:
+    repo: http://svn.code.sf.net/p/vpcs/code/trunk
+    dest: /root/vpcs
+    checkout: yes
+    update: no
+
+ - name: Create dynamips build dir
+   file: 
+    path: /root/dynamips/build
+    state: directory
+
+ - name: Cmake dynamips
+   cmake:
+     source_dir: /root/dynamips
+     binary_dir: /root/dynamips/build
+
+ - name: Build dynamips 
+   shell: "{{ item }}"
+   args:
+     chdir: "/root/dynamips/build"
+   with_items:
+     - make
+     - make install
+
+ - name: Make ubridge
+   shell: "{{ item }}"
+   args:
+     chdir: "/root/ubridge"
+   with_items:
+     - make
+     - make install
+  
+ - name: Make vpcs
+   shell: "{{ item }}"
+   args:
+     chdir: "/root/vpcs/src"
+   with_items:
+     - "./mk.sh 64"
+     - "install -m 755 vpcs /usr/local/bin"

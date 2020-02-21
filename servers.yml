@@ -1,0 +1,15 @@
+---
+- hosts: server
+  become: yes
+  vars:
+    gns3_url: http://localhost
+    docker: "True"
+    kali_img: "False"
+
+  roles:
+       - common
+       - kvm
+       - role: gns3server_build
+         when: (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
+       - gns3-server
+       - reboot

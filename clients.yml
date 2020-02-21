@@ -1,8 +1,10 @@
 ---
  - hosts: clients
    become: yes
+   vars:
+        srv_on_client: "True"
+
    roles:
-     - gns3-gui
-
-# Maybe need pip for GNS3 client if no pkg available
-
+     - role: gns3server_build
+       when: srv_on_client == "True" and (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
+     - role: gns3-gui
