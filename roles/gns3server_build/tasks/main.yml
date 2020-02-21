@@ -1,0 +1,37 @@
+---
+ - name: Install tools and dep
+   yum:
+     name: "{{ packages }}"
+   vars:
+     packages:
+          - gcc
+          - python3-devel
+          - python3-pip
+          - python36-psutil
+          - git
+          - cmake
+          - elfutils-libelf-devel
+          - libpcap-devel
+          - glibc-static
+          - python-setuptools
+          - svn
+
+   when: ansible_distribution_major_version == "7"
+
+ - name: Install tools and dep
+   dnf:
+     name: "{{ packages }}"
+   vars:
+     packages:
+          - gcc
+          - python3-devel
+          - python3-pip
+          - python3-psutil
+   when: ansible_distribution_major_version == "8"
+
+ - name: Install PyPiP
+   dnf:
+       name: python3-pip
+   when: ansible_distribution_major_version == "8"
+
+ - include: centos-make-tools.yml
