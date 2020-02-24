@@ -9,8 +9,5 @@
     pkg:
     - python3-pip
     - vim
-    - htop
-    - tmux
-    - zsh 
-    - sshfs
+    - telnet
     state: latest

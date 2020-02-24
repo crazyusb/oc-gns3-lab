@@ -9,10 +9,10 @@ Dans le cadre du parcours AIC (Administrateur Infrastructure et Cloud) organisé
 
 Usage:
 ===
-Pour utiliser le playbook, modifier le fichier <code>hosts</code> pour qu'il corresponde a votre infrastructure. 
+Pour utiliser le playbook, adapté le fichier <code>hosts</code> à votre infrastructure. 
 
 Documentation:
 ===
 
 - [Introduction](https://github.com/crazyusb/oc-gns3-lab/wiki)
- - [Developpement](https://github.com/crazyusb/oc-gns3-lab/wiki/Developpement)
+- [Developpement](https://github.com/crazyusb/oc-gns3-lab/wiki/Developpement)

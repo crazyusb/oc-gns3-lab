@@ -1,10 +1,10 @@
 ---
- - name: Clone sources
+ - name: Clone Dynamips sources
    git:
     repo: https://github.com/GNS3/dynamips.git
     dest: /tmp/dynamips
 
- - name: Clone sources
+ - name: Clone Ubridge sources
    git:
     repo: https://github.com/GNS3/ubridge.git
     dest: /tmp/ubridge
@@ -15,6 +15,7 @@
     dest: /tmp/vpcs
     checkout: yes
     update: no
+   when: ansible_distribution_major_version == "7"
 
  - name: Create dynamips build dir
    file: 
@@ -49,3 +50,4 @@
    with_items:
      - "./mk.sh 64"
      - "install -m 755 vpcs /usr/local/bin"
+   when: ansible_distribution_major_version == "7"

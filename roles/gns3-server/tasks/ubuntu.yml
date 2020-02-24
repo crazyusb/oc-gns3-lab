@@ -29,7 +29,7 @@
     comment: gns3 user
 
  - include: gns3-docker-ubuntu.yml
-   when: (docker == "true" ansible_distribution == "Ubuntu")
+   when: docker == "True" and ansible_distribution == "Ubuntu"
 
  - name: Systemd file
    copy:

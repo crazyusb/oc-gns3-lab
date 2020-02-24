@@ -18,6 +18,11 @@
 
    when: ansible_distribution_major_version == "7"
 
+
+ - name: Adding PowerTools repo
+   command: yum config-manager --set-enabled PowerTools
+   when: ansible_distribution_major_version == "8"
+
  - name: Install tools and dep
    dnf:
      name: "{{ packages }}"
@@ -27,6 +32,15 @@
           - python3-devel
           - python3-pip
           - python3-psutil
+          - git
+          - cmake
+          - elfutils-libelf-devel
+          - libpcap-devel
+          - glibc-static
+          - libxcrypt-static
+          - python3-setuptools
+          - svn
+          - make
    when: ansible_distribution_major_version == "8"
 
  - name: Install PyPiP

@@ -1,5 +1,5 @@
 ---
-- hosts: server
+- hosts: servers
   become: yes
   vars:
     gns3_url: http://localhost

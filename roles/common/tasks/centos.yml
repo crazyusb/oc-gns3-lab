@@ -15,10 +15,7 @@
    yum:
     pkg:
     - vim
-    - htop
-    - tmux
-    - zsh
-    - sshfs
+    - telnet
     state: latest
    when: (ansible_distribution_major_version == "7")
 
@@ -38,9 +35,6 @@
    dnf:
     pkg:
     - vim
-    - htop
-    - tmux
-    - zsh 
-    - sshfs
+    - telnet
     state: latest
    when: (ansible_distribution_major_version == "8")
