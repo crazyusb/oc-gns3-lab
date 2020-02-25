@@ -40,7 +40,7 @@
           - python3-psutil
           - python3-pyqt5-sip
           - python3-qt5
-#          - wireshark-gnome
+          - wireshark
    when: ansible_distribution_major_version == "8"
 
  - name: Install PyPiP
