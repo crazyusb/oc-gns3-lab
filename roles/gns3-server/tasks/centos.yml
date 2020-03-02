@@ -12,7 +12,7 @@
     comment: gns3 user
 
  - include: gns3-docker-centos.yml
-   when: docker == "True"  and (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
+   when: docker == "True" and (ansible_distribution == "CentOS" or ansible_distribution == "RedHat")
 
  - name: GNS3-server
    pip:

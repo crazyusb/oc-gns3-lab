@@ -11,6 +11,5 @@
    dnf:
     pkg:
     - libvirt
-    - qemu
     - qemu-kvm
    when: (ansible_distribution_major_version == "8")

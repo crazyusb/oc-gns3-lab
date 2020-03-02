@@ -1,19 +1,33 @@
 ---
-# - name: Docker repo
-#   yum_repository:
-#     name: docker-ce
-#     description: Docker repo
-#     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-
  - name: Add Docker-ce repository
-   command: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+   command: yum-config-manager --add-repo=http://download.docker.com/linux/centos/docker-ce.repo
    args:
      creates: /etc/yum.repos.d/docker-ce.repo
+   when: (ansible_distribution_major_version == "7")
+
+ - name: Add Docker-ce repository
+   command: dnf config-manager --add-repo=http://download.docker.com/linux/centos/docker-ce.repo
+   args:
+     creates: /etc/yum.repos.d/docker-ce.repo
+   when: (ansible_distribution_major_version == "8")
 
  - name: Install docker-ce
    yum:
      name: docker-ce
      state: latest
+   when: (ansible_distribution_major_version == "7")
+
+ - name: Install containerd.io
+   dnf:
+     name: https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+     state: present
+   when: (ansible_distribution_major_version == "8")
+
+ - name: Install docker-ce
+   dnf:
+     name: docker-ce
+     state: latest
+   when: (ansible_distribution_major_version == "8")
 
  - name: Add GNS3 user to docker group
    user:

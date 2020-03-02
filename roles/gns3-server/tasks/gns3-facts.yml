@@ -1,9 +1,0 @@
---- 
- - name: Get the server facts
-   gns3_module:
-     url: "{{ gns3_url }}"
-     port: 3080
-     page: "version"
-   register: gns3_version
-
- - debug: var=gns3_version

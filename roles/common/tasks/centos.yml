@@ -16,6 +16,7 @@
     pkg:
     - vim
     - telnet
+    - python36-requests
     state: latest
    when: (ansible_distribution_major_version == "7")
 
@@ -36,5 +37,6 @@
     pkg:
     - vim
     - telnet
+    - python3-requests
     state: latest
    when: (ansible_distribution_major_version == "8")
