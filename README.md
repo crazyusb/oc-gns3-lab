@@ -14,5 +14,5 @@ Pour utiliser le playbook, adapté le fichier <code>hosts</code> à votre infras
 ## Documentation:
 
 - [Introduction](https://github.com/crazyusb/oc-gns3-lab/wiki)
-- [Servers](https://github.com/crazyusb/oc-gns3-lab/wiki/Servers)
-- [Clients](https://github.com/crazyusb/oc-gns3-lab/wiki/Clients)
+- [Servers](https://github.com/crazyusb/oc-gns3-lab/wiki/3-Servers)
+- [Clients](https://github.com/crazyusb/oc-gns3-lab/wiki/4-Clients)
